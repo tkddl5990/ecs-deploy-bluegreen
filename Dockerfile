@@ -24,3 +24,32 @@ RUN ls -a
 
 # 빌드
 RUN yarn build
+
+FROM node:16-alpine AS runner
+
+WORKDIR /app
+ENV NODE_ENV=production
+
+# 사용자 그룹 nodejs 추가
+# nodejs에 유저 nextjs 추가
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+# builder에서 빌드했던 결과물 중 public, package.json 복붙
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+
+# builder에서 빌드했던 결과물 중 static, standalone 복붙 소유자와 소유그룹도 변경
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# nextjs
+USER nextjs
+
+# 열어둘 포트 설정
+EXPOSE 3000
+
+# 이미지 안 환경변수 설정
+ENV PORT 3000
+
+CMD ["node", "server.js"]
