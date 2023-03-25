@@ -1,0 +1,21 @@
+{
+  "version": 0.0,
+  "Resources":
+    [
+      {
+        "TargetService":
+          {
+            "Type": "AWS::ECS::Service",
+            "Properties":
+              {
+                "TaskDefinition": "arn:aws:ecs:ap-northeast-2:212826876628:task-definition/test-task-01:2",
+                "LoadBalancerInfo":
+                  {
+                    "ContainerName": "test-container-01",
+                    "ContainerPort": 3000,
+                  },
+              },
+          },
+      },
+    ],
+}
