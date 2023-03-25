@@ -8,10 +8,10 @@
             "Type": "AWS::ECS::Service",
             "Properties":
               {
-                "TaskDefinition": "arn:aws:ecs:ap-northeast-2:212826876628:task-definition/test-task-01:2",
+                "TaskDefinition": "arn:aws:ecs:ap-northeast-2:212826876628:task-definition/test-app-task-definition:1",
                 "LoadBalancerInfo":
                   {
-                    "ContainerName": "test-container-01",
+                    "ContainerName": "test-app-container-01-3000-tcp",
                     "ContainerPort": 3000,
                   },
               },
