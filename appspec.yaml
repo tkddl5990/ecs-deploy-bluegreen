@@ -11,7 +11,7 @@
                 "TaskDefinition": "arn:aws:ecs:ap-northeast-2:212826876628:task-definition/test-app-task-definition:1",
                 "LoadBalancerInfo":
                   {
-                    "ContainerName": "test-app-container-01-3000-tcp",
+                    "ContainerName": "test-app-container-01",
                     "ContainerPort": 3000,
                   },
               },
